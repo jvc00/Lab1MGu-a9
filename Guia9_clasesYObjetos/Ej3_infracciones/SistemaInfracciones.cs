@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ej3_infracciones
 {
-    class SistemaActas
+    class SistemaInfracciones
     {
         #region nomenclador de infracciones
         int CODIGO_1_INFRACCION = 1;
@@ -19,7 +19,7 @@ namespace Ej3_infracciones
         #endregion
 
         #region atributos generales de sistema
-        double montoBase;
+        public double BaseMonetaria { get; private set; }
 
         public double Recaudacion { get; private set; }
 
@@ -52,21 +52,21 @@ namespace Ej3_infracciones
         #endregion
 
         #region atributos por cada acta
-        int dni;
-        string nombre;
-        public double totalAPagar;
+        public int DniActa { get; private set; }
+        public string NombreActa { get; private set; }
+        public double TotalActaAPagar { get; private set; }
         #endregion
 
         #region atributos por cada infraccion
-        int codigoInfraccion;
-        string descInfraccion;
-        double montoInfraccion;
+        public int CodigoInfraccion { get; private set; }
+        public string DescripcionInfraccion { get; private set; }
+        public double MontoInfraccion { get; private set; }
         #endregion
 
         #region método del sistema
         public void IniciarSistema(double montoBase)
         {
-            this.montoBase = montoBase;
+            this.BaseMonetaria = montoBase;
             this.Recaudacion = 0;
         }
         #endregion
@@ -74,9 +74,9 @@ namespace Ej3_infracciones
         #region métodos por acta
         public void IniciarActa(int dni, string nombre)
         {
-            this.dni = dni;
-            this.nombre = nombre;
-            totalAPagar = 0;
+            this.DniActa = dni;
+            this.NombreActa = nombre;
+            TotalActaAPagar = 0;
         }
 
         public double RegistrarInfraccion(int codigo)
@@ -85,22 +85,22 @@ namespace Ej3_infracciones
             {
                 case 1:
                     {
-                        montoInfraccion = UD_1_INFRACCION * montoBase;
+                        MontoInfraccion = UD_1_INFRACCION * BaseMonetaria;
                     }
                     break;
                 case 2:
                     {
-                        montoInfraccion = UD_2_INFRACCION * montoBase;
+                        MontoInfraccion = UD_2_INFRACCION * BaseMonetaria;
                     }
                     break;
             }
-            totalAPagar += montoInfraccion;
-            return montoInfraccion;
+            TotalActaAPagar += MontoInfraccion;
+            return MontoInfraccion;
         }
 
         public void FinalizarActa(bool pagaEnElLugar)
         {
-            Recaudacion += totalAPagar;
+            Recaudacion += TotalActaAPagar;
         }
         #endregion
 

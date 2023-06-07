@@ -9,7 +9,7 @@ namespace Ej3_infracciones
     class Program
     {
 
-        static void PantallaIngresoActa(SistemaActas sistema)
+        static void PantallaIngresoActa(SistemaInfracciones sistema)
         {
             Console.Clear();
 
@@ -29,13 +29,13 @@ namespace Ej3_infracciones
                 codigo = Convert.ToInt32(Console.ReadLine());
             }
             sistema.FinalizarActa(true);
-            Console.WriteLine("Total a pagar: {0:f2}", sistema.totalAPagar);
+            Console.WriteLine("Total a pagar: {0:f2}", sistema.TotalActaAPagar);
 
             Console.WriteLine("Presione una tecla para volver al menu");
             Console.ReadKey();
         }
 
-        static void PantallaImprimirDia(SistemaActas sistema)
+        static void PantallaImprimirDia(SistemaInfracciones sistema)
         {
             Console.Clear();
 
@@ -55,7 +55,7 @@ namespace Ej3_infracciones
         }
         static void Main(string[] args)
         {
-            SistemaActas sis = new SistemaActas();
+            SistemaInfracciones sis = new SistemaInfracciones();
 
             #region pantalla de configuracion
             Console.Clear();
